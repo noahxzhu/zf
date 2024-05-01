@@ -8,33 +8,33 @@ const path = require("path");
 const winston = require("winston");
 require("dotenv").config();
 
-const auth = require("./auth.js");
-
-const zf_id = process.env.ZF_ID;
-const bark_key = process.env.BARK_KEY;
-const strs = process.env.STRS;
-
-dayjs.extend(timezone);
-dayjs.extend(utc);
-const tz = "Asia/Shanghai";
-
-const customFormat = winston.format.printf(({ message }) => {
-  return `${message}`;
-});
-
-const dateStr = dayjs.utc().tz(tz).format("YYYYMMDD");
-
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.combine(winston.format.timestamp(), customFormat),
-  transports: [
-    new winston.transports.File({
-      filename: path.join(__dirname, "logs", "zfrontier" + dateStr + ".log"),
-    }),
-  ],
-});
-
 const call = function () {
+  const auth = require("./auth.js");
+
+  const zf_id = process.env.ZF_ID;
+  const bark_key = process.env.BARK_KEY;
+  const strs = process.env.STRS;
+
+  dayjs.extend(timezone);
+  dayjs.extend(utc);
+  const tz = "Asia/Shanghai";
+
+  const customFormat = winston.format.printf(({ message }) => {
+    return `${message}`;
+  });
+
+  const dateStr = dayjs.utc().tz(tz).format("YYYYMMDD");
+
+  const logger = winston.createLogger({
+    level: "info",
+    format: winston.format.combine(winston.format.timestamp(), customFormat),
+    transports: [
+      new winston.transports.File({
+        filename: path.join(__dirname, "logs", "zfrontier" + dateStr + ".log"),
+      }),
+    ],
+  });
+
   axios
     .get("https://www.zfrontier.com/app/mch/" + zf_id)
     .then(function (response) {
