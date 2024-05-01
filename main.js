@@ -3,6 +3,7 @@ const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
 const qs = require("qs");
+const path = require("path");
 const winston = require("winston");
 require("dotenv").config();
 
@@ -26,7 +27,9 @@ const logger = winston.createLogger({
   level: "info",
   format: winston.format.combine(winston.format.timestamp(), customFormat),
   transports: [
-    new winston.transports.File({ filename: "zfrontier" + dateStr + ".log" }),
+    new winston.transports.File({
+      filename: path.join(__dirname, "logs", "zfrontier" + dateStr + ".log"),
+    }),
   ],
 });
 
