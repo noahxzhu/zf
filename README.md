@@ -16,4 +16,4 @@ podman build -t zf-notify .
 podman run -d -v your_volume:/app/logs:Z -v your_env_file:/app/.env:Z --name zfn zf-notify
 ```
 
-podman run --restart=always -d -v /home/noah/podman-volume/zf-notify/logs:/app/logs:Z -v /home/noah/podman-volume/zf-notify/.env:/app/.env:Z --name zfn zf-notify
+podman run -d -v /home/noah/podman-volume/zf-notify/logs:/app/logs:Z -v /home/noah/podman-volume/zf-notify/.env:/app/.env:Z --name zfn zf-notify
