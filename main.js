@@ -2,7 +2,6 @@ const axios = require("axios");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
-const cron = require("cron");
 const qs = require("qs");
 const path = require("path");
 const winston = require("winston");
@@ -110,11 +109,4 @@ async function call() {
   }
 }
 
-const job = cron.CronJob.from({
-  cronTime: "*/15 * * * *",
-  onTick: () => call(),
-});
-
-job.start();
-
-setInterval(() => {}, 1000 * 60 * 60);
+call();
