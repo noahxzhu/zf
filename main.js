@@ -92,7 +92,7 @@ async function call() {
               badge: 1,
               group: "zFrontier",
               icon: "https://img.zfrontier.com/ui/icon/favicon.ico",
-              url: "https://www.zfrontier.com/app/mch/BP9xRLrAJXz1",
+              url: `https://www.zfrontier.com/app/mch/${zf_id}`,
               isArchive: 1,
             },
             headers: {
